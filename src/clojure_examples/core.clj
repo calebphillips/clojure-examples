@@ -45,3 +45,7 @@
                    (every? #(< -1 % size) new-yx))
                (map #(vec (map + yx %)) deltas))))
 
+; source: 
+; interesting: apply
+(apply hash-map ["Java" "Gosling" "Ruby" "Matz" "Clojure" "Hickey"])
+
