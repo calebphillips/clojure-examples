@@ -30,3 +30,27 @@
           (it "doesn't blow the stack"
               (should (> (recur-fibo 1000) 1E200))))
 
+(describe "Run length encoding"
+          (it "encodes stuff"
+              (should= '([1 :a]) (rle [:a]))
+              (should= '([2 :a]) (rle [:a :a]))
+              (should= '([2 :a] [4 6]) (rle [:a :a 6 6 6 6]))
+              (should= '([2 :a] [2 6] [1 :a] [3 "x"]) (rle [:a :a 6 6 :a "x" "x" "x"]))
+              (should= '([4 a] [1 b] [2 c] [2 a] [1 d] [4 e]) (rle '[a a a a b c c a a d e e e e]))))
+
+(describe "Run length decoding"
+          (it "decodes stuff"
+              (should= [:a] (rld '([1 :a])))
+              (should= [:a :a] (rld '([2 :a])))
+              (should= [:a :a 6 6 6 6] (rld '([2 :a] [4 6])))
+              (should= [:a :a 6 6 :a "x" "x" "x"] (rld '([2 :a] [2 6] [1 :a] [3 "x"])))
+              (should= '[a a a a b c c a a d e e e e] (rld '([4 a] [1 b] [2 c] [2 a] [1 d] [4 e])))))
+
+(describe "My Reverse"
+          (it "reverses a list"
+              (should= [9 8 7 6 5 4 3 2 1] (my-reverse '(1 2 3 4 5 6 7 8 9))))
+
+          (it "reverses a vector"
+              (should= [9 8 7 6 5 4 3 2 1] (my-reverse [1 2 3 4 5 6 7 8 9])))
+          
+          )
