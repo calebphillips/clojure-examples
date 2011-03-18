@@ -51,6 +51,17 @@
               (should= [9 8 7 6 5 4 3 2 1] (my-reverse '(1 2 3 4 5 6 7 8 9))))
 
           (it "reverses a vector"
-              (should= [9 8 7 6 5 4 3 2 1] (my-reverse [1 2 3 4 5 6 7 8 9])))
+              (should= [9 8 7 6 5 4 3 2 1] (my-reverse [1 2 3 4 5 6 7 8 9]))))
+
+(describe "Formatting integers with commas"
+          (it "works for numbers less than 1000"
+              (should= "900" (commas 900)))
           
-          )
+          (it "works for 1000"
+              (should= "1,000" (commas 1000)))
+          
+          (it "works in the millions"
+              (should= "1,234,567" (commas 1234567)))
+          
+          (it "works for big ones"
+              (should= "1,231,231,231,231,231,231,231,231,239" (commas 1231231231231231231231231239))))
