@@ -65,3 +65,10 @@
           
           (it "works for big ones"
               (should= "1,231,231,231,231,231,231,231,231,239" (commas 1231231231231231231231231239))))
+
+(describe "Neighbors"
+          (it "find the neighbors for a coordinate pair in a 3x3 matrix"
+              (should= [[1 0] [0 1]] (neighbors 3 [0 0]))
+              (should= [[1 1] [0 0] [0 2]] (neighbors 3 [0 1]))
+              (should= [[0 1] [2 1] [1 0] [1 2]] (neighbors 3 [1 1])))
+          )
