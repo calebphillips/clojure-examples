@@ -45,7 +45,13 @@
                    (every? #(< -1 % size) new-yx))
                (map #(vec (map + yx %)) deltas))))
 
-; source: 
-; interesting: apply
-(apply hash-map ["Java" "Gosling" "Ruby" "Matz" "Clojure" "Hickey"])
+;source The Joy of Clojure
+(defn index [coll]
+  (cond
+    (map? coll) (seq coll)
+    (set? coll) (map vector coll coll)
+    :else (map vector (iterate inc 0) coll)))
+
+(defn pos [pred coll]
+  (for [[i v] (index coll) :when (pred v)] i))
 

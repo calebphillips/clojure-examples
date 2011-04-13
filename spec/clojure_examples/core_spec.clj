@@ -72,3 +72,25 @@
               (should= [[1 1] [0 0] [0 2]] (neighbors 3 [0 1]))
               (should= [[0 1] [2 1] [1 0] [1 2]] (neighbors 3 [1 1])))
           )
+
+(describe "locating the positional index"
+          (it "works for vectors"
+              (should= [5] (pos (partial = 3) [:a 1 :b 2 :c 3 :d 4]))
+              (should= [] (pos (partial = :foo) [:a 1 :b 2 :c 3 :d 4]))
+              (should= [1 3 5] (pos (partial = 3) [:a 3 :b 3 :c 3 :d 4])))
+
+          (it "works for maps"
+              (should= [:c] (pos (partial = 3) {:a 1 :b 2 :c 3 :d 4}))
+              (should= [:a :b :c] (pos (partial = 3) {:a 3 :b 3 :c 3 :d 4})))
+
+          (it "works for lists"
+              (should= [5] (pos (partial = 3) '(:a 1 :b 2 :c 3 :d 4))))
+
+          (it "works for strings"
+              (should= [13] (pos (partial = \3) ":a 1 :b 2 :c 3 :d 4")))
+
+          (it "works with functions other than equality"
+              (should= [:c :d] (pos #{3 4} {:a 1 :b 2 :c 3 :d 4}))
+              (should= [0 2] (pos even? [2 3 6 7])))
+
+          )
