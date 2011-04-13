@@ -46,6 +46,10 @@
                (map #(vec (map + yx %)) deltas))))
 
 ;source The Joy of Clojure
+;interesting: destructing in list comprehension binding, 
+;             "Prefer higher-order functions when processing sequences",
+;             generating index with multi-coll map form and an infinite sequence,
+;             breaking into 'simples'
 (defn index [coll]
   (cond
     (map? coll) (seq coll)
